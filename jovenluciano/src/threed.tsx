@@ -4,9 +4,11 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 interface ThreeDModelProps {
   fixed: boolean;
+  filePath: string;
+  camZ?:number;
 }
 
-const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed }) => {
+const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, filePath, camZ = 1.5 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -91,12 +93,15 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed }) => {
         }
       }
     });
+    const file = 'assets/JOVEN_LUCIANO_Junto2.glb';
+    let path = filePath;
+    if(process.env.NODE_ENV == "development") path = "jovenlucianoweb/"+ filePath
 
     // Load the 3D model
     let model: THREE.Group | undefined;
     const loader = new GLTFLoader();
     loader.load(
-      '../assets/JOVEN_LUCIANO_Junto2.glb',
+      path,
       function (gltf) {
         model = gltf.scene;
         model.scale.set(3, 3, 3); // Fixed scale
@@ -117,8 +122,8 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed }) => {
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = logo_camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-        if(fixed)cameraZ *= 1.2; // Add some space
-        if(!fixed)cameraZ *= 1.5;
+        cameraZ *= camZ; // Add some space
+
         logo_camera.position.set(0, 0, cameraZ);
         logo_camera.near = maxDim / 100;
         logo_camera.far = maxDim * 100;

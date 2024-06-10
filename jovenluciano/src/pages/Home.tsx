@@ -1,6 +1,7 @@
 import { useScript } from "usehooks-ts";
 import ThreeDModel from "../threed";
 import Background from "../background";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   //useScript("background.js");
@@ -9,11 +10,11 @@ const Home = () => {
     <Background/>
     <div id="mainContainer">
       <div className="w-screen h-screen">
-        <ThreeDModel fixed={false}/>
+        <ThreeDModel fixed={false} filePath="assets/JOVEN_LUCIANO_Junto2.glb"/>
       </div>
       <div className="section-buttons">
         <a href="{{ url_for('videos') }}" className="button">Videos</a>
-        <a href="/paintings" className="button">Paintings</a>
+        <Link to="/paintings" className="button">Paintings</Link>
         <a href="{{ url_for('illustrations') }}" className="button">Illustrations</a>
         <a href="{{ url_for('sketchbooks') }}" className="button">Sketchbooks</a>
         <a href="{{ url_for('info') }}" className="button">Info</a>
