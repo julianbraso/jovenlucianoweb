@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.166dda2f.css",
-    "main.js": "/static/js/main.09a47159.js",
-    "static/js/453.c513d35c.chunk.js": "/static/js/453.c513d35c.chunk.js",
-    "static/media/instagram.svg": "/static/media/instagram.525029d1e302663e168a6abfabecd59d.svg",
-    "index.html": "/index.html",
-    "main.166dda2f.css.map": "/static/css/main.166dda2f.css.map",
-    "main.09a47159.js.map": "/static/js/main.09a47159.js.map",
-    "453.c513d35c.chunk.js.map": "/static/js/453.c513d35c.chunk.js.map"
+    "main.css": "/jovenlucianoweb/static/css/main.166dda2f.css",
+    "main.js": "/jovenlucianoweb/static/js/main.8a9c11ec.js",
+    "static/js/453.c513d35c.chunk.js": "/jovenlucianoweb/static/js/453.c513d35c.chunk.js",
+    "static/media/instagram.svg": "/jovenlucianoweb/static/media/instagram.525029d1e302663e168a6abfabecd59d.svg",
+    "index.html": "/jovenlucianoweb/index.html",
+    "main.166dda2f.css.map": "/jovenlucianoweb/static/css/main.166dda2f.css.map",
+    "main.8a9c11ec.js.map": "/jovenlucianoweb/static/js/main.8a9c11ec.js.map",
+    "453.c513d35c.chunk.js.map": "/jovenlucianoweb/static/js/453.c513d35c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.166dda2f.css",
-    "static/js/main.09a47159.js"
+    "static/js/main.8a9c11ec.js"
   ]
 }
