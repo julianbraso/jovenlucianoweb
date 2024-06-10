@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/jovenlucianoweb/static/css/main.166dda2f.css",
-    "main.js": "/jovenlucianoweb/static/js/main.14c3b772.js",
+    "main.css": "/jovenlucianoweb/static/css/main.a97455f3.css",
+    "main.js": "/jovenlucianoweb/static/js/main.c26a5ae5.js",
     "static/js/453.c513d35c.chunk.js": "/jovenlucianoweb/static/js/453.c513d35c.chunk.js",
+    "static/media/footer_logo.png": "/jovenlucianoweb/static/media/footer_logo.607085df384bfc349fe6.png",
     "static/media/instagram.svg": "/jovenlucianoweb/static/media/instagram.525029d1e302663e168a6abfabecd59d.svg",
     "index.html": "/jovenlucianoweb/index.html",
-    "main.166dda2f.css.map": "/jovenlucianoweb/static/css/main.166dda2f.css.map",
-    "main.14c3b772.js.map": "/jovenlucianoweb/static/js/main.14c3b772.js.map",
+    "main.a97455f3.css.map": "/jovenlucianoweb/static/css/main.a97455f3.css.map",
+    "main.c26a5ae5.js.map": "/jovenlucianoweb/static/js/main.c26a5ae5.js.map",
     "453.c513d35c.chunk.js.map": "/jovenlucianoweb/static/js/453.c513d35c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.166dda2f.css",
-    "static/js/main.14c3b772.js"
+    "static/css/main.a97455f3.css",
+    "static/js/main.c26a5ae5.js"
   ]
 }
