@@ -103,7 +103,7 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
     });
     const file = 'assets/JOVEN_LUCIANO_Junto2.glb';
     let path = filePath;
-    if (process.env.NODE_ENV == "development") path = "jovenlucianoweb/" + filePath
+    //if (process.env.NODE_ENV == "development") path = "jovenlucianoweb/" + filePath
 
     // Load the 3D model
     let model: THREE.Group | undefined;
