@@ -8,37 +8,41 @@ import ThreeDModel from "../threed";
 import Background from "../background";
 import { ThumbnailImageProps } from "react-grid-gallery";
 import footer from "../footer_logo.png"
+import * as THREE from 'three';
 import { ReactComponent as InstagramIcon } from '../static/assets/instagram.svg';
-
-const ImageComponent = (props: ThumbnailImageProps) => {
-  const { src, alt, style, title } = props.imageProps;
-  return <img alt={alt} src={src} title={title || ""} style={style} onClick={() => alert(props.item.caption)} />;
-};
-
-
+import SelectedComponent from "../components/SelectedComponent";
 
 const Paintings = () => {
   const [images, setImages] = useState(IMAGES);
+  const [selectedImage, setSelectedImage] = useState<ThumbnailImageProps | null>(null);
+
+  const ImageComponent = (props: ThumbnailImageProps) => {
+    const { src, alt, style, title } = props.imageProps;
+    return <img alt={alt} src={src} title={title || ""} style={style} onClick={() => setSelectedImage(props)} />;
+  };
   //useScript("background.js");
   //useScript("logo_only.js", {removeOnUnmount:true});
   return <div className="w-screen h-screen overflow-x-hidden">
     <Background />
-    <div id="mainContainer" className="w-full h-fit flex justify-center">
-      <div className="h-16 w-full flex items-center pl-[4%]">
-        <Link to="/" className="h-16 w-60">
-          <ThreeDModel camZ={0.30} fixed={true} filePath="assets/Jovenapaisado.glb" /></Link>
-      </div>
-      <div className="w-[90%] h-fit pb-20">
-        <Gallery images={images}
-          thumbnailImageComponent={ImageComponent}
-          enableImageSelection={false}
-        />
-      </div>
-      <div className="text-white h-12 w-full flex items-center justify-center bg-purple-500">
-        <div className="w-[90%] flex items-center justify-between">
-          <img className="h-8" src={footer}></img>
-          <div className="w-5 h-5 mt-auto mb-auto pb-4 text-white pr-1">
-            <a href="https://instagram.com/jovenluciano"><InstagramIcon /></a>
+    <div id="mainContainer" className="w-full h-full flex">
+      <div className="w-full h-full absolute flex flex-col items-center">
+        <div className="h-20 w-full flex items-center pl-[5%]">
+          <Link to="/" className="h-16 w-[270px]">
+            <ThreeDModel lightPos={new THREE.Vector3(0, 5, 3)} fov={1} camZ={0.24} fixed={true} filePath="assets/Jovenapaisado.glb" /></Link>
+        </div>
+        <div id="" className="w-[90%] pb-20">
+        {!selectedImage ? <Gallery images={images}
+            thumbnailImageComponent={ImageComponent}
+            enableImageSelection={false} /> :
+            <SelectedComponent image={selectedImage} backCallback={() => setSelectedImage(null)} />}
+        </div>
+        <div className="text-white h-12 w-full flex items-center justify-center bg-purple-500">
+          <div className="w-[90%] flex items-center justify-between">
+            {/* <img className="h-8" src={footer}></img> */}
+            <a className="text-green-500 hover:text-green-300 w-fit" href="mailto:contact@jovenluciano.com">contact@jovenluciano.com</a>
+            <div className="h-full w-fit text-green-500 hover:text-green-300 pr-1">
+              <a href="https://instagram.com/jovenluciano">Instagram</a>
+            </div>
           </div>
         </div>
       </div>

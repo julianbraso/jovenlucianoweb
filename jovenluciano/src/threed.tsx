@@ -2,20 +2,28 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
+interface vector {
+  x: number;
+  y: number;
+  z: number;
+}
+
 interface ThreeDModelProps {
   fixed: boolean;
   filePath: string;
-  camZ?:number;
+  camZ?: number;
+  fov?: number;
+  lightPos?: THREE.Vector3;
 }
 
-const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, filePath, camZ = 1.5 }) => {
+const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.Vector3(0, 1, 2), fov = 75, filePath, camZ = 1.5 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Initialize scene, camera, and renderer
     const logo_scene = new THREE.Scene();
     const logo_camera = new THREE.PerspectiveCamera(
-      75,
+      fov,
       containerRef.current!.clientWidth / containerRef.current!.clientHeight,
       0.1,
       1000
@@ -31,7 +39,7 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, filePath, camZ = 1.5 }
 
     // Setup the logo_light
     const logo_light = new THREE.PointLight(0xffffff, 1, 100);
-    logo_light.position.set(0, 1, 2);
+    logo_light.position.set(lightPos.x, lightPos.y, lightPos.z);
     logo_scene.add(logo_light);
 
     const inflationMaterial = new THREE.ShaderMaterial({
@@ -95,7 +103,7 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, filePath, camZ = 1.5 }
     });
     const file = 'assets/JOVEN_LUCIANO_Junto2.glb';
     let path = filePath;
-    if(process.env.NODE_ENV == "development") path = "jovenlucianoweb/"+ filePath
+    if (process.env.NODE_ENV == "development") path = "jovenlucianoweb/" + filePath
 
     // Load the 3D model
     let model: THREE.Group | undefined;
@@ -139,7 +147,7 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, filePath, camZ = 1.5 }
 
     // Resize handler to ensure the shader is responsive
     function onWindowResize() {
-        if(fixed) return;
+      if (fixed) return;
       // Update camera aspect ratio and projection matrix
       logo_camera.aspect = containerRef.current!.clientWidth / containerRef.current!.clientHeight;
       logo_camera.updateProjectionMatrix();

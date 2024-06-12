@@ -11,18 +11,16 @@ body {
 
 body::-webkit-scrollbar {display:none;}
 
-#logoContainer {
-    
+#gallery {
+    height: fit-content; /* Maintain this height if it's giving you the desired size for the WebGL content */
 }
 
 #mainContainer {
     width: 100%;
-    height: fit-content; /* Maintain this height if it's giving you the desired size for the WebGL content */
     display: flex;
     flex-direction: column; /* Ensures the content is laid out in a vertical flow */
     justify-content: center;
     align-items: center;
-    position: absolute;
     /* left: 50%;
     top: 50%;
     transform: translate(-50%,-50%); */

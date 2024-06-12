@@ -6,12 +6,14 @@ export const images: Image[] = [
     width: 320,
     height: 174,
     caption: "After Rain (Jeshu John - designerspics.com)",
+    alt: "brief description"
   },
   {
     src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
     width: 320,
     height: 212,
     caption: "Boats (Jeshu John - designerspics.com)",
+    alt: "brief description"
   },
   {
     src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
