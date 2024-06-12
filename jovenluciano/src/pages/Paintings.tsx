@@ -22,9 +22,9 @@ const Paintings = () => {
   };
   //useScript("background.js");
   //useScript("logo_only.js", {removeOnUnmount:true});
-  return <div className="w-screen h-screen overflow-x-hidden">
+  return <div className="w-screen h-screen overflow-x-hidden touch-none">
     <Background />
-    <div id="mainContainer" className="w-full h-full flex">
+    <div id="mainContainer" className="w-full h-full flex touch-none">
       <div className="w-full h-full absolute flex flex-col items-center">
         <div className="h-20 w-full flex items-center pl-[5%]">
           <Link to="/" className="h-16 w-[270px]">
