@@ -36,11 +36,11 @@ const Paintings = () => {
             enableImageSelection={false} /> :
             <SelectedComponent image={selectedImage} backCallback={() => setSelectedImage(null)} />}
         </div>
-        <div className="text-white h-12 w-full flex items-center justify-center bg-purple-500">
-          <div className="w-[90%] flex items-center justify-between">
+        <div className="text-white h-fit w-full flex items-center justify-center bg-[#7700ff]">
+          <div className="w-[90%] h-14 flex items-center justify-between">
             {/* <img className="h-8" src={footer}></img> */}
-            <a className="text-green-500 hover:text-green-300 w-fit" href="mailto:contact@jovenluciano.com">contact@jovenluciano.com</a>
-            <div className="h-full w-fit text-green-500 hover:text-green-300 pr-1">
+            <a className="text-[#00ff00] hover:text-green-300 w-fit" href="mailto:contact@jovenluciano.com">contact@jovenluciano.com</a>
+            <div className="w-fit text-[#00ff00] hover:text-green-300 pr-1">
               <a href="https://instagram.com/jovenluciano">Instagram</a>
             </div>
           </div>
