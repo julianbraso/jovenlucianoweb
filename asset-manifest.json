@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/jovenlucianoweb/static/css/main.f25fd83d.css",
-    "main.js": "/jovenlucianoweb/static/js/main.e7356e41.js",
+    "main.css": "/jovenlucianoweb/static/css/main.87e14f35.css",
+    "main.js": "/jovenlucianoweb/static/js/main.5772ea5d.js",
     "static/js/453.c513d35c.chunk.js": "/jovenlucianoweb/static/js/453.c513d35c.chunk.js",
     "index.html": "/jovenlucianoweb/index.html",
-    "main.f25fd83d.css.map": "/jovenlucianoweb/static/css/main.f25fd83d.css.map",
-    "main.e7356e41.js.map": "/jovenlucianoweb/static/js/main.e7356e41.js.map",
+    "main.87e14f35.css.map": "/jovenlucianoweb/static/css/main.87e14f35.css.map",
+    "main.5772ea5d.js.map": "/jovenlucianoweb/static/js/main.5772ea5d.js.map",
     "453.c513d35c.chunk.js.map": "/jovenlucianoweb/static/js/453.c513d35c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f25fd83d.css",
-    "static/js/main.e7356e41.js"
+    "static/css/main.87e14f35.css",
+    "static/js/main.5772ea5d.js"
   ]
 }
