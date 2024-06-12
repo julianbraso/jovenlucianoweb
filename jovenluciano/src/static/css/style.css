@@ -52,7 +52,6 @@ body::-webkit-scrollbar {display:none;}
     text-align: center; /* Center align the buttons */
     padding: 0; /* Reduce padding if it's creating too much space */
     /* border: 0px solid red; */
-    position: fixed;
     top:65%;
     /* left: 50%;
    

@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return <div className="w-screen h-screen overflow-x-hidden touch-none">
     <Background/>
-    <div id="mainContainer" className="fixed touch-none">
-      <div className="w-screen h-screen touch-none">
-        <ThreeDModel fixed={false} filePath="assets/JOVEN_LUCIANO_Junto2.glb"/>
+    <div id="mainContainer" className="h-full w-full fixed touch-none">
+      <div className="w-[90%] md:w-[50rem] h-[30%] md:h-[40rem] touch-none">
+        <ThreeDModel camZ={0.84} fixed={false} filePath="assets/JOVEN_LUCIANO_Junto2.glb"/>
       </div>
       <div className="section-buttons">
         <Link to="/videos" className="button">Videos</Link>

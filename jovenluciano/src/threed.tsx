@@ -101,15 +101,12 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
         }
       }
     });
-    const file = 'assets/JOVEN_LUCIANO_Junto2.glb';
-    let path = filePath;
-    //if (process.env.NODE_ENV == "development") path = "jovenlucianoweb/" + filePath
 
     // Load the 3D model
     let model: THREE.Group | undefined;
     const loader = new GLTFLoader();
     loader.load(
-      path,
+      filePath,
       function (gltf) {
         model = gltf.scene;
         model.scale.set(3, 3, 3); // Fixed scale
@@ -128,8 +125,8 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
         const size = new THREE.Vector3();
         box.getSize(size);
         const maxDim = Math.max(size.x, size.y, size.z);
-        const fov = logo_camera.fov * (Math.PI / 180);
-        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+        const fovRad = logo_camera.fov * (Math.PI / 180);
+        let cameraZ = Math.abs(maxDim / 2 / Math.tan(fovRad / 2));
         cameraZ *= camZ; // Add some space
 
         logo_camera.position.set(0, 0, cameraZ);
@@ -137,21 +134,6 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
         logo_camera.far = maxDim * 100;
         logo_camera.updateProjectionMatrix();
 
-        
-      // Apply scaling if the model is present
-      if (!fixed) {
-        let uniformScale;
-
-        if (window.innerWidth < 1000) {
-          // Calculate the scaling factor based on window width
-          const scalingFactor = window.innerWidth / 1000;
-          uniformScale = 3 * scalingFactor;
-        } else {
-          uniformScale = 3;
-        }
-
-        model.scale.set(uniformScale, uniformScale, uniformScale);
-      }
 
         logo_scene.add(model);
       },
@@ -163,18 +145,15 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
 
     // Resize handler to ensure the shader is responsive
     function onWindowResize() {
-      if (fixed) return;
       // Update camera aspect ratio and projection matrix
       logo_camera.aspect = containerRef.current!.clientWidth / containerRef.current!.clientHeight;
       logo_camera.updateProjectionMatrix();
 
       // Set the size of the renderer to fill the container
-      if (!fixed) {
-        logo_renderer.setSize(containerRef.current!.clientWidth, containerRef.current!.clientHeight);
-      }
+      logo_renderer.setSize(containerRef.current!.clientWidth, containerRef.current!.clientHeight);
 
       // Apply scaling if the model is present
-      if (model) {
+      if (model && !fixed) {
         let uniformScale;
 
         if (window.innerWidth < 1000) {
@@ -216,7 +195,7 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
       }
       window.removeEventListener('resize', onWindowResize);
     };
-  }, [fixed]);
+  }, [fixed, filePath, lightPos, fov, camZ]);
 
   return <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative' }} />;
 };
