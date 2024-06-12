@@ -4,19 +4,19 @@ import Background from "../background";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  return <div className="w-screen h-screen overflow-x-hidden">
+  return <div className="w-screen h-screen overflow-x-hidden touch-none">
     <Background/>
-    <div id="mainContainer">
-      <div className="w-screen h-screen">
+    <div id="mainContainer" className="fixed touch-none">
+      <div className="w-screen h-screen touch-none">
         <ThreeDModel fixed={false} filePath="assets/JOVEN_LUCIANO_Junto2.glb"/>
       </div>
       <div className="section-buttons">
         <Link to="/videos" className="button">Videos</Link>
         <Link to="/paintings" className="button">Paintings</Link>
         <Link to="/illustrations" className="button">Illustrations</Link>
-        <Link to="{{ url_for('sketchbooks') }}" className="button">Sketchbooks</Link>
+        <Link to="/sketchbooks" className="button">Sketchbooks</Link>
         <Link to="/info" className="button">Info</Link>
-        <Link to="{{ url_for('shop') }}" className="button">Shop</Link>
+        <Link to="https://jovenluciano.bigcartel.com/" className="button">Shop</Link>
       </div>
     </div>
   </div>
