@@ -137,6 +137,22 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
         logo_camera.far = maxDim * 100;
         logo_camera.updateProjectionMatrix();
 
+        
+      // Apply scaling if the model is present
+      if (!fixed) {
+        let uniformScale;
+
+        if (window.innerWidth < 1000) {
+          // Calculate the scaling factor based on window width
+          const scalingFactor = window.innerWidth / 1000;
+          uniformScale = 3 * scalingFactor;
+        } else {
+          uniformScale = 3;
+        }
+
+        model.scale.set(uniformScale, uniformScale, uniformScale);
+      }
+
         logo_scene.add(model);
       },
       undefined,
