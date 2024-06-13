@@ -31,83 +31,47 @@ const Background: React.FC = () => {
         }
       `,
       fragmentShader: `
-        #define hue(v) ( .6 + .6 * cos( 2.*PI*(v) + vec3(0,-2.*PI/3.,2.*PI/3.) ) )
-        #define PI 3.14159265359
-
-        // Settings
-        #define LAYER_COUNT 5.
-        #define ABERRATION 0.25
-        #define ABERRATION_SIZE 0.3
-        #define DOT_SIZE 0.05
-
-        float hash12(vec2 p) {
-          vec3 p3 = fract(vec3(p.xyx) * .1031);
-          p3 += dot(p3, p3.yzx + 33.33);
-          return fract((p3.x + p3.y) * p3.z);
-        }
-
-        vec3 dotLayer(vec2 uv, vec2 uvNorm, float uvLength, float fade, float layerID) {
-          vec2 gv = fract(uv) - 0.5;
-          vec2 ID = floor(uv);
-          vec3 col = vec3(0);
-          for (int x = -1; x <= 1; x++)
-            for (int y = -1; y <= 1; y++) {
-              vec2 offs = vec2(x, y);
-              float rnID = hash12(ID + offs + layerID);
-              float variantID = 123.123 * rnID;
-              vec2 rndOffs = vec2(sin(variantID), cos(variantID));
-              vec2 pos = gv - offs + rndOffs;
-
-              float starScale = 0.5 + (0.5 * rnID);
-              float dotScale = DOT_SIZE * starScale * fade;
-              float abbrsize = 0.01 + (ABERRATION_SIZE * uvLength) * fade * starScale;
-              float p = smoothstep(dotScale, dotScale * .5, length(pos));
-              col += p;
-
-              float aberr = ABERRATION * starScale * fade;
-              float fC = 0.;
-              for (int i = 0; i < 3; i++) {
-                fC += 0.33333;
-                float cDist = (fC * uvLength * aberr);
-
-                col[i] += pow(smoothstep(abbrsize, 0., length(pos + (uvNorm * cDist))), 2.);
-              }
-            }
-          return col * fade;
-        }
-
-        mat2 Rot(float a) {
-          float s = sin(a), c = cos(a);
-          return mat2(c, -s, s, c);
-        }
+        precision highp float;
 
         uniform float iTime;
         uniform vec2 iResolution;
 
-        void mainImage(out vec4 fragColor, in vec2 fragCoord) {
-          vec2 uv = (fragCoord.xy - 0.5 * iResolution.xy) / iResolution.y;
-          uv.x *= iResolution.x / iResolution.y; // Adjust for aspect ratio
-          float uvLength = length(uv);
-          uv *= Rot(iTime * 0.1);
-          vec2 uvNorm = normalize(uv);
+        #define STARDISTANCE 150.0
+        #define STARBRIGHTNESS 0.5
+        #define STARDENSITY 0.05
 
-          vec3 col = vec3(0);
-
-          float speed = iTime * 0.2;
-          for (float i = 0.; i < 1.; i += 1. / LAYER_COUNT) {
-            float depth = fract(speed + i);
-            col += dotLayer(uv * (20. - (19. * depth)), uvNorm, uvLength, smoothstep(1., 0.8, depth), i) * depth;
-          }
-
-          vec3 bgCol = abs(dot(uvNorm.x * uvLength, uvNorm.y)) * (hue(uvLength + (iTime * 0.2)) * 0.1);
-          col += bgCol;
-
-          fragColor = vec4(col, 1.0);
+        float hash13(vec3 p3)
+        {
+            p3 = fract(p3 * vec3(.1031, .11369, .13787));
+            p3 += dot(p3, p3.yzx + 19.19);
+            return fract((p3.x + p3.y) * p3.z);
         }
 
-        varying vec2 vUv;
-        void main() {
-          mainImage(gl_FragColor, vUv * iResolution.xy);
+        float stars(vec3 ray)
+        {
+            vec3 p = ray * STARDISTANCE;
+            float h = hash13(p);
+            float flicker = cos(iTime * 1.0 + hash13(abs(p) * 0.01) * 13.0) * 0.5 + 0.5;
+            float brigtness = smoothstep(1.0 - STARDENSITY, 1.0, hash13(floor(p)));
+            return smoothstep(STARBRIGHTNESS, 0.0, length(fract(p) - 0.5)) * brigtness * flicker;
+        }
+
+        vec3 camera(vec2 fragCoord)
+        {
+            vec3 ray = normalize(vec3(fragCoord.xy - iResolution.xy * 0.5, iResolution.x));
+            vec2 angle = vec2(3.0 + iTime * -0.01, 10.0 + iTime * 0.10);
+            vec4 cs = vec4(cos(angle.x), sin(-angle.x), cos(angle.y), sin(angle.y));
+            ray.yz *= mat2(cs.xy, -cs.y, cs.x); 
+            ray.xz *= mat2(cs.zw, -cs.w, cs.z); 
+            return ray;
+        }
+
+        void main()
+        {
+            vec2 fragCoord = gl_FragCoord.xy;
+            vec3 ray = camera(fragCoord);
+            float s = stars(ray);
+            gl_FragColor = vec4(s, s, s, 1.0);
         }
       `,
       uniforms: {
@@ -115,15 +79,13 @@ const Background: React.FC = () => {
         iResolution: { value: new THREE.Vector2(container.clientWidth, container.clientHeight) }
       },
       transparent: true,
-      depthWrite: false,
     });
 
-    const aspectRatio = container.clientWidth / container.clientHeight;
-    const geometry = new THREE.PlaneGeometry(2 * aspectRatio, 2); // Adjusted for aspect ratio
+    const geometry = new THREE.PlaneGeometry(container.clientWidth, container.clientHeight);
     const plane = new THREE.Mesh(geometry, shaderMaterial);
     scene.add(plane);
 
-    camera.position.z = 1;
+    camera.position.z = 5;
 
     rendererRef.current = renderer;
     sceneRef.current = scene;
@@ -145,11 +107,6 @@ const Background: React.FC = () => {
       camera?.updateProjectionMatrix();
       renderer?.setSize(container.clientWidth, container.clientHeight);
       shaderMaterial?.uniforms.iResolution.value.set(container.clientWidth, container.clientHeight);
-
-      const aspectRatio = container.clientWidth / container.clientHeight;
-      const geometry = new THREE.PlaneGeometry(2 * aspectRatio, 2); // Adjust plane geometry
-      plane.geometry.dispose();
-      plane.geometry = geometry;
     };
 
     window.addEventListener('resize', resizeHandler);
