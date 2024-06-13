@@ -52,26 +52,18 @@ body::-webkit-scrollbar {display:none;}
     text-align: center; /* Center align the buttons */
     padding: 0; /* Reduce padding if it's creating too much space */
     /* border: 0px solid red; */
-    top:65%;
+    width: 100%;
+    height: 8%;
+    /* top:65%; */
     /* left: 50%;
    
     transform: translate(-50%,-85%); */
 }
-@media screen and (min-width: 700px) {
-    .section-buttons {
-        text-align: center; /* Center align the buttons */
-        padding: 0; /* Reduce padding if it's creating too much space */
-        /* border: 0px solid red; */
-        position: fixed;
-        top:75%;
-        /* left: 50%;
-       
-        transform: translate(-50%,-85%); */
-    }
-}
-.section-buttons a.button {
+
+.menubutton {
     display: inline-block; /* Allows padding and width to be applied correctly */
     margin: 10px;
+    width: fit-content;
     padding: 1vh 2vh;
     cursor: pointer;
     background-color: #8400ff;
