@@ -2,12 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-interface vector {
-  x: number;
-  y: number;
-  z: number;
-}
-
 interface ThreeDModelProps {
   fixed: boolean;
   filePath: string;
@@ -80,7 +74,8 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
           vec3 specular = vec3(1.0) * spec * metalness;
           float diff = max(dot(norm, logo_lightDir), 0.0);
 
-          float colorInflationEffect = clamp(vInflation * 15.0, 0.0, 1.0);
+          // Interpolate colors fully between color1 and color2
+          float colorInflationEffect = clamp((vInflation*20.0), 0.0, 1.0);
           vec3 mixedColor = mix(color1, color2, colorInflationEffect);
 
           vec3 diffuse = mixedColor * diff;
@@ -90,8 +85,8 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
       `,
       uniforms: {
         time: { value: 0 },
-        color1: { value: new THREE.Color("#7700ff") },
-        color2: { value: new THREE.Color("#00ff00") },
+        color1: { value: new THREE.Color(0.52, 0.0, 1.0) }, // Explicit violet color
+        color2: { value: new THREE.Color(0.0, 1.0, 0.0) }, // Explicit green color
         logo_lightPosition: { value: logo_light.position },
         logo_lightIntensity: { value: logo_light.intensity },
         minInflation: { value: 0 },
@@ -133,7 +128,6 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
         logo_camera.near = maxDim / 100;
         logo_camera.far = maxDim * 100;
         logo_camera.updateProjectionMatrix();
-
 
         logo_scene.add(model);
       },
