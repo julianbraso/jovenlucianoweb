@@ -80,7 +80,7 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
           vec3 specular = vec3(1.0) * spec * metalness;
           float diff = max(dot(norm, logo_lightDir), 0.0);
 
-          float colorInflationEffect = clamp(vInflation * 8.0, 0.0, 1.0);
+          float colorInflationEffect = clamp(vInflation * 15.0, 0.0, 1.0);
           vec3 mixedColor = mix(color1, color2, colorInflationEffect);
 
           vec3 diffuse = mixedColor * diff;
@@ -90,8 +90,8 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
       `,
       uniforms: {
         time: { value: 0 },
-        color1: { value: new THREE.Color(0x8400ff) },
-        color2: { value: new THREE.Color(0x2AFF00) },
+        color1: { value: new THREE.Color("#7700ff") },
+        color2: { value: new THREE.Color("#00ff00") },
         logo_lightPosition: { value: logo_light.position },
         logo_lightIntensity: { value: logo_light.intensity },
         minInflation: { value: 0 },
