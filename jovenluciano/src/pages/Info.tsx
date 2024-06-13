@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import * as THREE from 'three';
  
 const Info = () => {
-  return <div className="w-screen h-screen overflow-x-hidden touch-none">
+  return <div className="w-screen h-screen overflow-x-hidden overscroll-none">
     <Background />
     <div id="mainContainer" className="w-full h-full flex">
       <div className="w-full h-full absolute flex flex-col items-center">
