@@ -5,6 +5,7 @@ import "./static/css/style.css";
 import Home from './pages/Home';
 import Paintings from './pages/Paintings';
 import Info from './pages/Info';
+import Videos from './pages/Videos';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path='/paintings' element={<Paintings />} />
         <Route path='/info' element={<Info />} />
-        <Route path='/videos' element={<Paintings />} />
+        <Route path='/videos' element={<Videos />} />
       </Routes>
     </div>
   );

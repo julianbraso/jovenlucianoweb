@@ -2,6 +2,8 @@ import { useScript } from "usehooks-ts";
 import ThreeDModel from "../threed";
 import Background from "../background";
 import { Link } from "react-router-dom";
+import { Image } from "react-grid-gallery";
+
 import "../static/css/style.css";
 
 const Home = () => {

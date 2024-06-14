@@ -106,3 +106,22 @@ footer {
     width: 100%; /* Full width */
     background-color: #04ff00; /* Dark background for the footer */
 }
+
+.video-js.vjs-fluid,
+.video-js.vjs-16-9,
+.video-js.vjs-4-3,
+video.video-js,
+video.vjs-tech {
+  max-height: calc(80vh - 64px);
+  position: relative !important;
+  width: 100%;
+  height: auto !important;
+  max-width: 100% !important;
+  padding-top: 0 !important;
+  line-height: 0;
+}
+
+/* Fix the control bar due to us resetting the line-height on the video-js */
+.vjs-control-bar {
+  line-height: 1;
+}

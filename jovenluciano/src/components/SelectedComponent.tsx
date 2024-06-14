@@ -1,19 +1,37 @@
 import { ThumbnailImageProps } from "react-grid-gallery";
+import { VideoJSComponent } from "./VideoJSComponent";
+import { Video } from "../pages/Videos";
+import "../static/css/style.css";
 
 interface Props {
-    image: ThumbnailImageProps;
+    data: ThumbnailImageProps;
     backCallback: () => void;
+    isVideo?: boolean;
 }
 
-const SelectedComponent: React.FC<Props> = ({ image, backCallback }) => {
-    const { src, alt, style, title } = image.imageProps;
-    return <div className={"w-full  pt-3 flex items-center sm:items-start sm:justify-start flex-col md:flex-row h-full md:h-[calc(100vh-6rem-5rem)] gap-5 "}>
-        <div className="h-fit w-fit ">
-            <img className="max-h-[35rem] max-w-[45rem] w-full" src={src} alt={alt}></img>
-        </div>
-        <div className="text-white text-start h-full flex flex-col gap-5">
-            <h1>{title}</h1>
-            <h2>{image.item.alt}</h2>
+const SelectedComponent: React.FC<Props> = ({ data, backCallback, isVideo = false }) => {
+    const { src, alt, style, title } = data.imageProps;
+
+    const videoData = data.item as Video;
+
+    return <div className="w-full">
+        <div className="w-full"><div className="ml-auto text-[#00ff00] font-semibold cursor-pointer w-fit" onClick={backCallback}>Back</div></div>
+        <div className={"w-full pt-3 flex items-center sm:items-start sm:justify-start flex-col md:flex-row h-full gap-5 "}>
+            <div className="h-fit w-fit">
+                {!isVideo ?
+                    <img className="max-h-[35rem] max-w-[45rem] w-full" src={src} alt={alt}></img>
+                    :
+                    <div className="max-h-[100%] overflow-hidden">
+                        <div className="h-[100%] w-full">
+                            <VideoJSComponent src={videoData.videoUrl} />
+                        </div>
+                    </div>
+                }
+            </div>
+            <div className="text-white text-start h-full flex flex-col gap-5">
+                <h1>{title}</h1>
+                <h2>{data.item.alt}</h2>
+            </div>
         </div>
     </div>;
 }

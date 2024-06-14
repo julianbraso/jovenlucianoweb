@@ -1,0 +1,34 @@
+[
+    {
+        "src": "https://jovenlucianoweb.nyc3.cdn.digitaloceanspaces.com/images/paintings/182FC123-8D79-4ABE-849D-9DC81CAA975E.jpeg",
+        "videoUrl":"https://jovenlucianoweb.nyc3.cdn.digitaloceanspaces.com/videos/que%20no%20te%20llenen%20la%20cabeza%20final.mp4",
+        "width": 320,
+        "height": 174,
+        "caption": "que%20no%20te%20llenen%20la%20cabeza%20final",
+        "alt": "brief description"
+    },
+    {
+        "src": "https://jovenlucianoweb.nyc3.cdn.digitaloceanspaces.com/images/paintings/182FC123-8D79-4ABE-849D-9DC81CAA975E.jpeg",
+        "videoUrl":"https://jovenlucianoweb.nyc3.cdn.digitaloceanspaces.com/videos/Sticky_Thoughts_Final%202.mp4",
+        "width": 320,
+        "height": 174,
+        "caption": "Sticky_Thoughts_Final",
+        "alt": "brief description"
+    },
+    {
+        "src": "https://jovenlucianoweb.nyc3.cdn.digitaloceanspaces.com/images/paintings/182FC123-8D79-4ABE-849D-9DC81CAA975E.jpeg",
+        "videoUrl":"https://jovenlucianoweb.nyc3.cdn.digitaloceanspaces.com/videos/JERINGA_MASTER.mp4",
+        "width": 320,
+        "height": 174,
+        "caption": "JERINGA_MASTER",
+        "alt": "brief description"
+    },
+    {
+        "src": "https://jovenlucianoweb.nyc3.cdn.digitaloceanspaces.com/images/paintings/182FC123-8D79-4ABE-849D-9DC81CAA975E.jpeg",
+        "videoUrl":"https://jovenlucianoweb.nyc3.cdn.digitaloceanspaces.com/videos/Final_Head_Idea_SQ.mp4",
+        "width": 320,
+        "height": 174,
+        "caption": "Final_Head_Idea_SQ",
+        "alt": "brief description"
+    }
+]
