@@ -41,8 +41,8 @@ const Videos = () => {
   //useScript("logo_only.js", {removeOnUnmount:true});
   return <div className="w-screen h-screen overflow-hidden overscroll-none">
     <Background />
-    <div id="mainContainer" className="w-full absolute h-full flex">
-      <div className="w-full min-h-screen relative flex flex-col items-center">
+    <div id="mainContainer" className="w-full absolute h-full">
+      <div className="w-full h-full relative flex flex-col items-center">
         <Header/>
         <div id="" className="w-[90%] pb-20 flex-grow">
           {!selectedImage ? <Gallery images={videos}

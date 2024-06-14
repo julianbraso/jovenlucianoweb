@@ -6,8 +6,8 @@ import { Header } from "../components/Header";
 const Info = () => {
   return <div className="w-screen h-screen overflow-hidden overscroll-none">
     <Background />
-    <div id="mainContainer" className="w-full absolute h-full flex">
-      <div className="w-full min-h-screen relative flex flex-col items-center">
+    <div id="mainContainer" className="w-full absolute h-full">
+      <div className="w-full h-full relative flex flex-col items-center">
         <Header/>
         <div className={"w-[90%] pt-3 pb-20 flex flex-grow items-center md:items-start justify-center flex-col md:flex-row h-fit gap-5 md:gap-10"}>
           <div className="h-fit w-[80%] md:w-fit flex flex-col gap-5">
