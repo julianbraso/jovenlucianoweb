@@ -10,7 +10,14 @@ interface HeaderProps {
 export const Header = ({backCallback, showBackBtn = false }:HeaderProps) => {
     return <div className="h-20 w-full flex items-center pl-[5%] fixed top-0 z-50 bg-[#7700ff] shadow-lg">
         <Link to="/" className="h-16 w-[270px]">
-            <ThreeDModel lightPos={new Vector3(1.5, 4, 2)} fov={1} camZ={0.24} fixed={true} filePath="assets/Jovenapaisado.glb" />
+            <ThreeDModel 
+                lightDistance={0}
+                lightIntensity={0.5} 
+                lightPos={new Vector3(1.7, 1.5, 5)} 
+                fov={1} 
+                camZ={0.24} 
+                fixed={true} 
+                filePath="assets/Jovenapaisado.glb" />
         </Link>
         {showBackBtn&&<div onClick={backCallback} className="cursor-pointer ml-auto pr-10 text-[#00ff00] underline font-bold">BACK</div>}
     </div>

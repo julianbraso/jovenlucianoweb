@@ -8,9 +8,11 @@ interface ThreeDModelProps {
   camZ?: number;
   fov?: number;
   lightPos?: THREE.Vector3;
+  lightIntensity?: number;
+  lightDistance?: number;
 }
 
-const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.Vector3(0, 1, 2), fov = 75, filePath, camZ = 1.5 }) => {
+const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightIntensity = 1, lightDistance = 100, lightPos = new THREE.Vector3(0, 1, 2), fov = 75, filePath, camZ = 1.5 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
     const logo_clock = new THREE.Clock();
 
     // Setup the logo_light
-    const logo_light = new THREE.PointLight(0xffffff, 1, 100);
+    const logo_light = new THREE.DirectionalLight(0xffffff, lightIntensity);
     logo_light.position.set(lightPos.x, lightPos.y, lightPos.z);
     logo_scene.add(logo_light);
 
@@ -72,10 +74,10 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
           vec3 reflectDir = reflect(-logo_lightDir, norm);
           float spec = pow(max(dot(viewDir, reflectDir), 0.0), (1.0 - roughness) * 32.0);
           vec3 specular = vec3(1.0) * spec * metalness;
-          float diff = max(dot(norm, logo_lightDir), 0.0);
+          float diff = max(dot(norm, logo_lightDir), 0.0) * logo_lightIntensity;
 
           // Interpolate colors fully between color1 and color2
-          float colorInflationEffect = clamp((vInflation*20.0), 0.0, 1.0);
+          float colorInflationEffect = clamp((vInflation * 20.0), 0.0, 1.0);
           vec3 mixedColor = mix(color1, color2, colorInflationEffect);
 
           vec3 diffuse = mixedColor * diff;
@@ -88,7 +90,7 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
         color1: { value: new THREE.Color(0.52, 0.0, 1.0) }, // Explicit violet color
         color2: { value: new THREE.Color(0.0, 1.0, 0.0) }, // Explicit green color
         logo_lightPosition: { value: logo_light.position },
-        logo_lightIntensity: { value: logo_light.intensity },
+        logo_lightIntensity: { value: lightIntensity },
         minInflation: { value: 0 },
         maxInflation: { value: 0.06 },
         normalMatrix: {
@@ -174,6 +176,7 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
 
       if (model) {
         inflationMaterial.uniforms.time.value = logo_clock.getElapsedTime();
+        inflationMaterial.uniforms.logo_lightIntensity.value = lightIntensity; // Ensure light intensity is updated
       }
 
       logo_renderer.render(logo_scene, logo_camera);
@@ -189,7 +192,7 @@ const ThreeDModel: React.FC<ThreeDModelProps> = ({ fixed, lightPos = new THREE.V
       }
       window.removeEventListener('resize', onWindowResize);
     };
-  }, [fixed, filePath, lightPos, fov, camZ]);
+  }, [fixed, filePath, lightPos, fov, camZ, lightIntensity]);
 
   return <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative' }} />;
 };

@@ -11,7 +11,7 @@ const Home = () => {
     <Background/>
     <div id="mainContainer" className="h-full w-full flex flex-col fixed touch-none">
       <div className="w-[90%] md:w-[50rem] h-[30%] md:h-[30rem] touch-none">
-        <ThreeDModel camZ={0.84} fixed={false} filePath="assets/JOVEN_LUCIANO_Junto2.glb"/>
+        <ThreeDModel lightIntensity={0.6} camZ={0.84} fixed={false} filePath="assets/JOVEN_LUCIANO_Junto2.glb"/>
       </div>
       <div className="section-buttons">
         <Link to="/videos" className="menubutton">Videos</Link>
