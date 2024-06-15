@@ -1,4 +1,4 @@
-import "../static/css/style.css";
+import "../css/style.css";
 import Background from "../background";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
@@ -11,7 +11,7 @@ const Info = () => {
       <div id="body" className="flex-grow">
         <div className={"w-[90%] [overflow-anchor:none] pt-3 pb-20 flex flex-grow items-center md:items-start justify-center flex-col md:flex-row h-fit gap-5 md:gap-10"}>
           <div className="h-fit w-[80%] md:w-fit flex flex-col gap-5">
-            <img src="aboutme.jpg" className="max-h-[45rem] max-w-[35rem] w-full" ></img>
+            <img src="https://jovenlucianoweb.nyc3.cdn.digitaloceanspaces.com/images/Info/Info.jpeg" className="max-h-[45rem] max-w-[35rem] w-full" ></img>
           </div>
           <div className="text-[#00ff00] text-start h-fit w-[80%] md:w-[30%] flex flex-col">
             <p className="text-lg font-bold">About Me</p>

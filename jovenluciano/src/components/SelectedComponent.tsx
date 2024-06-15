@@ -1,7 +1,7 @@
 import { ThumbnailImageProps } from "react-grid-gallery";
 import { VideoJSComponent } from "./VideoJSComponent";
 import { Video } from "../pages/Videos";
-import "../static/css/style.css";
+import "../css/style.css";
 
 interface Props {
     data: ThumbnailImageProps;

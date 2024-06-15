@@ -4,7 +4,7 @@ import Background from "../background";
 import { Link } from "react-router-dom";
 import { Image } from "react-grid-gallery";
 
-import "../static/css/style.css";
+import "../css/style.css";
 
 const Home = () => {
   return <div className="w-screen h-screen overflow-x-hidden touch-none">

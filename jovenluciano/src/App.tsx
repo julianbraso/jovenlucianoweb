@@ -1,7 +1,7 @@
 import './App.css';
 import { useScript } from 'usehooks-ts';
 import { Routes, Route } from "react-router-dom";
-import "./static/css/style.css";
+import "./css/style.css";
 import Home from './pages/Home';
 import Paintings from './pages/Paintings';
 import Info from './pages/Info';

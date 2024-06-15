@@ -2,7 +2,7 @@ import { useScript } from "usehooks-ts";
 import { Gallery } from "react-grid-gallery";
 import { images as IMAGES } from "../images";
 import { useEffect, useState } from "react";
-import "../static/css/style.css";
+import "../css/style.css";
 import { Link } from "react-router-dom";
 import ThreeDModel from "../threed";
 import Background from "../background";
