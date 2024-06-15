@@ -96,12 +96,12 @@ body::-webkit-scrollbar {
     width: fit-content;
     min-height: 42px;
     line-height: 24px;
-    padding: 1vh 2vh;
+    padding: 1% 2%;
     cursor: pointer;
     background-color: #8400ff;
     color: #ffee00;
     font-family: 'Underdog', sans-serif;
-    font-size: calc(4px+0.7vw);
+    font-size: calc(4px+1%);
     border: none;
     border-radius: 4px;
     transition: background-color 0.3s;
