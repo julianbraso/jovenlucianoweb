@@ -15,8 +15,7 @@ const SelectedComponent: React.FC<Props> = ({ data, backCallback, isVideo = fals
     const videoData = data.item as Video;
 
     return <div className="w-full">
-        <div className="w-full"><div className="ml-auto text-[#00ff00] font-semibold cursor-pointer w-fit" onClick={backCallback}>Back</div></div>
-        <div className={"w-full pt-3 flex items-center xl:items-start xl:justify-start flex-col xl:flex-row h-full gap-5 "}>
+        <div className={"w-full pt-3 flex flex-grow items-center xl:items-start xl:justify-start flex-col xl:flex-row h-full gap-5 "}>
             <div className="h-fit w-fit">
                 {!isVideo ?
                     <img className="max-h-[35rem] max-w-[45rem] w-full" src={src} alt={alt}></img>

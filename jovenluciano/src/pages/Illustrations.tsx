@@ -16,11 +16,11 @@ import { Image } from "react-grid-gallery";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 
-const Paintings = () => {
+const Illustrations = () => {
   const [images, setImages] = useState<Image[]>([]);
   const [selectedImage, setSelectedImage] = useState<ThumbnailImageProps | null>(null);
 
-  const dataURL = "https://jovenlucianoweb.nyc3.digitaloceanspaces.com/images/paintings/paintings.json";
+  const dataURL = "https://jovenlucianoweb.nyc3.digitaloceanspaces.com/images/illustrations/illustrations.json";
 
   useEffect(() => {
     const response = get_FetchFile(dataURL);
@@ -55,4 +55,4 @@ const Paintings = () => {
   </div>
 };
 
-export default Paintings;
+export default Illustrations;

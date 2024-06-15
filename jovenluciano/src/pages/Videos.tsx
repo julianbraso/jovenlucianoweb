@@ -19,7 +19,7 @@ export interface Video extends Image {
 
 const Videos = () => {
   const [videos, setVideos] = useState<Video[]>([]);
-  const [selectedImage, setSelectedImage] = useState<ThumbnailImageProps | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<ThumbnailImageProps | null>(null);
 
   const dataURL = "https://jovenlucianoweb.nyc3.digitaloceanspaces.com/videos/videos.json";
 
@@ -32,7 +32,7 @@ const Videos = () => {
 
   const ImageComponent = (props: ThumbnailImageProps) => {
     const { src, alt, style, title } = props.imageProps;
-    return <div className="relative" onClick={() => setSelectedImage(props)} >
+    return <div className="relative" onClick={() => setSelectedVideo(props)} >
       <img alt={alt} src={src} title={title || ""} style={style} />
       <div className="absolute w-full h-full top-0 left-0 flex items-center justify-center text-center"><div className="h-[3.5rem] w-[3.5rem] text-[#00ff00] flex justify-center pl-2 items-center"><PlayIcon width={36}></PlayIcon></div></div>
     </div>;
@@ -42,13 +42,13 @@ const Videos = () => {
   return <div className="w-screen h-screen overflow-hidden overscroll-none">
     <Background />
     <div id="mainContainer" className="w-full absolute h-full">
-      <div className="w-full h-full relative flex flex-col items-center">
-        <Header/>
+      <Header showBackBtn={selectedVideo != null} backCallback={()=> setSelectedVideo(null)}/>
+      <div id="body" className="[overflow-anchor:none]">
         <div id="" className="w-[90%] pb-20 flex-grow">
-          {!selectedImage ? <Gallery images={videos}
+          {!selectedVideo ? <Gallery images={videos}
             thumbnailImageComponent={ImageComponent}
             enableImageSelection={false} /> :
-            <SelectedComponent isVideo={true} data={selectedImage} backCallback={() => setSelectedImage(null)} />}
+            <SelectedComponent isVideo={true} data={selectedVideo} backCallback={() => setSelectedVideo(null)} />}
           {(videos.length < 1) && <div className="text-[#00ff00] w-full h-[50vh] flex justify-center items-center text-center text-lg lg:text-xl font-bold">No data to show... Try again later.</div>}
         </div>
         <Footer />

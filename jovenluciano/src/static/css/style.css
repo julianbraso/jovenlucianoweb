@@ -3,22 +3,44 @@ body {
     margin: 0;
     padding: 0;
     /* Removed the 'overflow: hidden;' to allow scrolling */
-    min-height: 100vh; /* Ensures the body takes at least the height of the viewport */
+    min-height: 100vh;
+    /* Ensures the body takes at least the height of the viewport */
     display: flex;
-    flex-direction: column; /* Ensures the content is laid out in a vertical flow */
-    align-items: center; /* Center children horizontally */
+    flex-direction: column;
+    /* Ensures the content is laid out in a vertical flow */
+    align-items: center;
+    /* Center children horizontally */
 }
 
-body::-webkit-scrollbar {display:none;}
+body::-webkit-scrollbar {
+    display: none;
+}
 
 #gallery {
-    height: fit-content; /* Maintain this height if it's giving you the desired size for the WebGL content */
+    height: fit-content;
+    /* Maintain this height if it's giving you the desired size for the WebGL content */
+}
+
+#body {
+    width: 100%;
+    min-height: calc(100% - 6rem);
+    min-height: -o-calc(100% - 6rem);
+    /* opera */
+    min-height: -webkit-calc(100% - 6rem);
+    /* google, safari */
+    min-height: -moz-calc(100% - 6rem);
+    /* firefox */
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #mainContainer {
     width: 100%;
     display: flex;
-    flex-direction: column; /* Ensures the content is laid out in a vertical flow */
+    flex-direction: column;
+    /* Ensures the content is laid out in a vertical flow */
     justify-content: center;
     align-items: center;
     /* left: 50%;
@@ -28,7 +50,8 @@ body::-webkit-scrollbar {display:none;}
 
 #backgroundContainer {
     width: 100%;
-    height: 100%; /* Maintain this height if it's giving you the desired size for the WebGL content */
+    height: 100%;
+    /* Maintain this height if it's giving you the desired size for the WebGL content */
     position: fixed;
     display: flex;
     justify-content: center;
@@ -37,20 +60,26 @@ body::-webkit-scrollbar {display:none;}
 }
 
 #homeScene {
-    width: 100%; /* Ensure full width */
-    height: auto; /* Adjust if necessary, or set to a specific height if your 3D content needs it */
+    width: 100%;
+    /* Ensure full width */
+    height: auto;
+    /* Adjust if necessary, or set to a specific height if your 3D content needs it */
     /* Ensure there's no excessive margin or padding that might push the buttons down */
 }
 
 .full {
-    width: auto; /* Ensure full width */
-    height: auto /* Adjust if necessary, or set to a specific height if your 3D content needs it */
-    /* Ensure there's no excessive margin or padding that might push the buttons down */
+    width: auto;
+    /* Ensure full width */
+    height: auto
+        /* Adjust if necessary, or set to a specific height if your 3D content needs it */
+        /* Ensure there's no excessive margin or padding that might push the buttons down */
 }
 
 .section-buttons {
-    text-align: center; /* Center align the buttons */
-    padding: 0; /* Reduce padding if it's creating too much space */
+    text-align: center;
+    /* Center align the buttons */
+    padding: 0;
+    /* Reduce padding if it's creating too much space */
     /* border: 0px solid red; */
     width: 100%;
     height: 8%;
@@ -61,7 +90,8 @@ body::-webkit-scrollbar {display:none;}
 }
 
 .menubutton {
-    display: inline-block; /* Allows padding and width to be applied correctly */
+    display: inline-block;
+    /* Allows padding and width to be applied correctly */
     margin: 10px;
     width: fit-content;
     padding: 1vh 2vh;
@@ -73,8 +103,10 @@ body::-webkit-scrollbar {display:none;}
     border: none;
     border-radius: 4px;
     transition: background-color 0.3s;
-    text-decoration: none; /* Removes the underline from links */
-    text-align: center; /* Ensures text is centered within the button */
+    text-decoration: none;
+    /* Removes the underline from links */
+    text-align: center;
+    /* Ensures text is centered within the button */
 }
 
 .gallery {
@@ -89,8 +121,10 @@ body::-webkit-scrollbar {display:none;}
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 200px; /* Adjust height as necessary */
-    background-color: #f3f3f3; /* Placeholder color */
+    height: 200px;
+    /* Adjust height as necessary */
+    background-color: #f3f3f3;
+    /* Placeholder color */
 }
 
 /* Add responsive styles as needed */
@@ -103,8 +137,10 @@ body::-webkit-scrollbar {display:none;}
 footer {
     padding: 10px;
     text-align: center;
-    width: 100%; /* Full width */
-    background-color: #04ff00; /* Dark background for the footer */
+    width: 100%;
+    /* Full width */
+    background-color: #04ff00;
+    /* Dark background for the footer */
 }
 
 .video-js.vjs-fluid,
@@ -112,16 +148,16 @@ footer {
 .video-js.vjs-4-3,
 video.video-js,
 video.vjs-tech {
-  max-height: calc(80vh - 64px);
-  position: relative !important;
-  width: 100%;
-  height: auto !important;
-  max-width: 100% !important;
-  padding-top: 0 !important;
-  line-height: 0;
+    max-height: calc(80vh - 64px);
+    position: relative !important;
+    width: 100%;
+    height: auto !important;
+    max-width: 100% !important;
+    padding-top: 0 !important;
+    line-height: 0;
 }
 
 /* Fix the control bar due to us resetting the line-height on the video-js */
 .vjs-control-bar {
-  line-height: 1;
+    line-height: 1;
 }
