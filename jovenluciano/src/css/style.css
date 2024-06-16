@@ -36,45 +36,6 @@ body::-webkit-scrollbar {
     align-items: center;
 }
 
-#mainContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    /* Ensures the content is laid out in a vertical flow */
-    justify-content: center;
-    align-items: center;
-    /* left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%); */
-}
-
-#backgroundContainer {
-    width: 100%;
-    height: 100%;
-    /* Maintain this height if it's giving you the desired size for the WebGL content */
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* border: 5px solid rgb(0, 255, 13); */
-}
-
-#homeScene {
-    width: 100%;
-    /* Ensure full width */
-    height: auto;
-    /* Adjust if necessary, or set to a specific height if your 3D content needs it */
-    /* Ensure there's no excessive margin or padding that might push the buttons down */
-}
-
-.full {
-    width: auto;
-    /* Ensure full width */
-    height: auto
-        /* Adjust if necessary, or set to a specific height if your 3D content needs it */
-        /* Ensure there's no excessive margin or padding that might push the buttons down */
-}
-
 .section-buttons {
     text-align: center;
     /* Center align the buttons */
@@ -94,12 +55,14 @@ body::-webkit-scrollbar {
     /* Allows padding and width to be applied correctly */
     margin: 10px;
     width: fit-content;
-    padding: 1vh 2vh;
+    min-height: 42px;
+    line-height: 24px;
+    padding: 1% 2%;
     cursor: pointer;
     background-color: #8400ff;
     color: #ffee00;
     font-family: 'Underdog', sans-serif;
-    font-size: calc(4px+0.7vw);
+    font-size: calc(4px+1%);
     border: none;
     border-radius: 4px;
     transition: background-color 0.3s;
